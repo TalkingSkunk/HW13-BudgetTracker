@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bible Fragments</title>
+    <!-- Materalize css, js, and icons -->
+    <link type="text/css" href="./css/materialize.min.css" rel="stylesheet">
+    <script type="text/javascript" src="./js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" href="./css/styles.css" rel="stylesheet">
+    <!-- browser receives all info from manifest.json for the Mobile Device to install -->
+    <link rel="manifest" href="./manifest.json">
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#FFE1C4">
+    <meta name="theme-color" content="#FFE1C4">
+</head>
+
+<body class="grey lighten-4">
+    <!-- top nav -->
+    <nav class="z-depth-0">
+        <div class="nav-wrapper container">
+            <a href="/">Bible<span>Fragments</span></a>
+            <span class="right grey-text text-darken-1">
+                <!-- Material Icon, when clicked, triggers "sidenav" section with id="side=menu" to slide from side -->
+                <a href="#!"><i class="material-icons sidenav-trigger" data-target="side-menu">menu</i></a>
+            </span>
+        </div>
+    </nav>
+    <!-- initially hidden "sidenav" section with id="side-menu" triggered -->
+    <ul id="side-menu" class="sidenav side-menu">
+        <li><a class="subheader">BIBLEFRAGMENTS</a></li>
+        <li><a href="/" class="waves-effect">Home</a></li>
+        <li><a href="/pages/about.html" class="waves-effect">About</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a href="/pages/contact.html" class="waves-effect">
+                <i class="material-icons">mail_outline</i>Contact</a>
+        </li>
+    </ul>
+    
+    <!-- centralize the Anchor tag with the Material icon (Add a book, or look at other books) that will trigger another "sidenav" section id="bookList" -->
+    <div class="center">
+        <a class="btn-floating btn-small waves-effect waves-light sidenav-trigger red" data-target="bookList"><i class="material-icons">account_balance</i></a>
+    </div>
+    <!-- initially hidden "sidenav" section with id="bookList" -->
+    <ul id='bookList' class='sidenav side-library'>
+        <!-- first list is a modal trigger -->
+        <li><a class="waves-effect waves-light modal-trigger sidenav-close" href="#modal1"><i class="material-icons">add_circle_outline</i>Add a Book</a>
+        </li>
+        <li class="divider" tabindex="-1"></li>
+        <!-- populate the book list with renderBookList() from ui.js -->
+    </ul>
+    <!-- Initially hidden Modal Structure with id="modal1" -->
+    <div id="modal1" class="modal">
+        <form id="newBookForm" class="add-chapter container section">
+            <div class="modal-content">
+                <h4>Name of Book</h4>
+                <div class="input-field">
+                    <i class="material-icons prefix">book</i>
+                    <input placeholder="Book name" id="book" type="text" class="validate">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+                <button class="modal-close btn waves-effect waves-light" type="submit" name="action">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- book title -->
+    <div class="bookTitle container grey-text text-darken-2">
+        <!-- populated by renderTitle() from ui.js -->
+        <h3 id="bookTitle" class="center"></h3>
+    </div>
+    <!-- chapters -->
+    <div class="chapters container grey-text text-darken-1">
+        <!-- populated by renderChapter() from ui.js -->
+    </div>
+
+    <!-- centralize Anchor tag with the Material Add icon (Add new chapter) that will trigger another "sidenav" section id="side-form" -->
+    <div class="center">
+        <a class="btn-floating btn-small add-btn sidenav-trigger" data-target="side-form">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+    <!-- initially hidden add chapter "sidenav" section with id="side-form" -->
+    <div id="side-form" class="sidenav side-form">
+        <form id="newChapterForm" class="add-chapter container section">
+            <h6>New Chapter</h6>
+            <div class="divider"></div>
+            <div class="input-field">
+                <input placeholder="Chapter #" id="chapter" type="number" class="validate">
+                <label for="chapter">Chapter</label>
+            </div>
+            <div class="input-field">
+                <input placeholder="Your hermaneutics..." id="commentary" type="text" class="validate">
+                <label for="commentary">Commentary</label>
+            </div>
+            <div class="input-field center">
+                <button class="btn-small sidenav-close">Add</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    <!-- COMMUNICATE WITH BACK END -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyDEmGul9y9ocTNl5-aH3oitXUclgk-3C00",
+        authDomain: "budgettracker-51448.firebaseapp.com",
+        projectId: "budgettracker-51448",
+        storageBucket: "budgettracker-51448.appspot.com",
+        messagingSenderId: "262079806308",
+        appId: "1:262079806308:web:e7eab55b1be58c24c29871",
+        measurementId: "G-38QBKSKXKZ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // create a variable for us interact with database in db.js
+    const db = firebase.firestore();
+    </script>
+    
+    <script src="./js/ui.js"></script>
+    <script src="./js/db.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
