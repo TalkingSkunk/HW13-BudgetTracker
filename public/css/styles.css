@@ -3,7 +3,8 @@
     /* variables for certain colours */
     --primary: #443627;
     --secondary: #5f4937;
-    --title: #ffbb7b;
+    --title: #c09971;
+    --tableWithdraw: #bd0000;
   }
   
   /* layout styles */
@@ -38,10 +39,6 @@
     grid-template-areas: "image details delete";
     position: relative;
   }
-  .chapter img{
-    grid-area: image;
-    max-width: 60px;
-  }
   .chapter-details{
     grid-area: details;
     margin-top: 6px;
@@ -49,9 +46,6 @@
   .chapter-delete{
     grid-area: delete;
     position: absolute;
-    /* bottom right corner */
-    bottom: 0px;
-    right: 0px;
   }
   .chapter-delete i{
     font-size: 18px;
@@ -79,4 +73,8 @@
   }
   form .input-field{
     margin-top: 30px;
+  }
+
+  tbody .Withdraw{
+    color: var(--tableWithdraw);
   }

@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
   M.Modal.init(modal, {inDuration: 1000});
   // time picker for transaction
   const timePicker = document.querySelectorAll('.datepicker');
-  M.Datepicker.init(timePicker, {autoClose: true, format: 'mmm dd, yyyy'});
+  M.Datepicker.init(timePicker, {autoClose: true, format: 'yyyy-mm-dd'});
 });
 // render book title data
 const renderTitle = title => {
@@ -41,11 +41,15 @@ const renderBookList = book => {
 // render chapter data
 const renderChapter = (data, id) => {
   const html = `
-    <tr class="chapter" data-id="${id}">
+    <tr class="chapter ${data.type}" data-id="${id}">
       <td class="chapter-type">${data.type}</td>
       <td class="chapter-time">${data.timestamp}</td>
       <td class="chapter-commentary">${data.name}</td>
       <td class="chapter-number">${data.amount}</td>
+      <td></td>
+      <td class="chapter-delete">
+      <i class="material-icons" data-id="${id}">delete_outline</i>
+      </td>
     </tr>
   `;
   chapters.innerHTML += html;
