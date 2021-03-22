@@ -1,7 +1,7 @@
 // static cache version
-const staticCacheName = 'site-static-v73';
+const staticCacheName = 'site-static-v7';
 // dynamic cache version
-const dynamicCacheName = 'site-dynamic-v73';
+const dynamicCacheName = 'site-dynamic-v7';
 // CORE assets (keys) to be saved in static cache storage
 const assets = [
   '/',
@@ -11,7 +11,6 @@ const assets = [
   '/js/materialize.min.js',
   '/css/styles.css',
   '/css/materialize.min.css',
-  '/img/chapter.png',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
   '/pages/fallback.html'

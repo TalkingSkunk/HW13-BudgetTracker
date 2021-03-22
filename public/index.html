@@ -23,7 +23,7 @@
     <!-- top nav -->
     <nav class="z-depth-0">
         <div class="nav-wrapper container">
-            <a href="/">Bible<span>Fragments</span></a>
+            <a href="/">Budget<span>Tracker</span></a>
             <span class="right grey-text text-darken-1">
                 <!-- Material Icon, when clicked, triggers "sidenav" section with id="side=menu" to slide from side -->
                 <a href="#!"><i class="material-icons sidenav-trigger" data-target="side-menu">menu</i></a>
@@ -59,7 +59,7 @@
     <div id="modal1" class="modal">
         <form id="newBookForm" class="add-chapter container section">
             <div class="modal-content">
-                <h4>Name of Book</h4>
+                <h4>Name of Account</h4>
                 <div class="input-field">
                     <i class="material-icons prefix">book</i>
                     <input placeholder="Book name" id="book" type="text" class="validate">
@@ -78,9 +78,19 @@
         <h3 id="bookTitle" class="center"></h3>
     </div>
     <!-- chapters -->
-    <div class="chapters container grey-text text-darken-1">
-        <!-- populated by renderChapter() from ui.js -->
-    </div>
+    <table class="centered">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Time</th>
+                <th>Transaction</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody id="chapters">
+            <!-- populated by renderChapter() from ui.js -->
+        </tbody>
+    </table>
 
     <!-- centralize Anchor tag with the Material Add icon (Add new chapter) that will trigger another "sidenav" section id="side-form" -->
     <div class="center">
@@ -90,16 +100,33 @@
     </div>
     <!-- initially hidden add chapter "sidenav" section with id="side-form" -->
     <div id="side-form" class="sidenav side-form">
+        <form id="newChapterForm2">
+            <h6>New Transaction</h6>
+            <p>
+                <label>
+                <input name="type1" type="radio" value="Deposit" checked />
+                <span>Deposit</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                <input name="type1" type="radio" value="Withdraw" />
+                <span>Withdraw</span>
+                </label>
+            </p>
+        </form>
         <form id="newChapterForm" class="add-chapter container section">
-            <h6>New Chapter</h6>
             <div class="divider"></div>
             <div class="input-field">
-                <input placeholder="Chapter #" id="chapter" type="number" class="validate">
-                <label for="chapter">Chapter</label>
+                <input id="timePicker" type="text" class="datepicker validate">
             </div>
             <div class="input-field">
-                <input placeholder="Your hermaneutics..." id="commentary" type="text" class="validate">
-                <label for="commentary">Commentary</label>
+                <input placeholder="Your Transaction Name" id="commentary" type="text" class="validate">
+                <label for="commentary">Transaction</label>
+            </div>
+            <div class="input-field">
+                <input placeholder="Chapter #" id="chapter" type="number" class="validate">
+                <label for="chapter">Amount</label>
             </div>
             <div class="input-field center">
                 <button class="btn-small sidenav-close">Add</button>

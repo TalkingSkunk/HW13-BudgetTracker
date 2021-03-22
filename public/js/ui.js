@@ -3,7 +3,7 @@ const bookTitle = document.querySelector('#bookTitle');
 // pinpoint the HTML element with id "bookList" (only in index.html)
 const bookList = document.querySelector('#bookList');
 // pinpoint the HTML element with class "chapters" (only in index.html)
-const chapters = document.querySelector('.chapters');
+const chapters = document.querySelector('#chapters');
 // once all DOM content in browser are loaded, trigger a callback function
 document.addEventListener('DOMContentLoaded', function() {
   // pinpoint the sidenav section (menu list)
@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // pinpoint the modal form, and initialize
   const modal = document.querySelectorAll('.modal');
   M.Modal.init(modal, {inDuration: 1000});
+  // time picker for transaction
+  const timePicker = document.querySelectorAll('.datepicker');
+  M.Datepicker.init(timePicker, {autoClose: true, format: 'mmm dd, yyyy'});
 });
 // render book title data
 const renderTitle = title => {
@@ -37,24 +40,13 @@ const renderBookList = book => {
 }
 // render chapter data
 const renderChapter = (data, id) => {
-    const html = `
-      <div class="card-panel chapter white row" data-id="${id}">
-        <img class="circle" src="./img/chapter.png" alt="chapter thumb">
-        <div class="chapter-details">
-          <div class="chapter-number">Chapter ${data.chapter}</div>
-          <div class="chapter-commentary">${data.commentary}</div>
-        </div>
-        <div class="chapter-delete">
-          <i class="material-icons" data-id="${id}">delete_outline</i>
-        </div>
-      </div>
-    `;
-    chapters.innerHTML += html;
-  };
-  
-  // remove chapter data
-  const removeChapter = (id) => {
-    // pinpoint div with class "chapter" which has the attribute with the value
-    const chapter = document.querySelector(`.chapter[data-id="${id}"]`);
-    chapter.remove();
-  };
+  const html = `
+    <tr class="chapter" data-id="${id}">
+      <td class="chapter-type">${data.type}</td>
+      <td class="chapter-time">${data.timestamp}</td>
+      <td class="chapter-commentary">${data.name}</td>
+      <td class="chapter-number">${data.amount}</td>
+    </tr>
+  `;
+  chapters.innerHTML += html;
+};
