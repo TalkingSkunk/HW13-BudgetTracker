@@ -45,14 +45,14 @@ const renderChapter = (data, id, totalBalance) => {
       <td class="chapter-time">${data.timestamp}</td>
       <td class="chapter-type">${data.type}</td>
       <td class="chapter-commentary">${data.name}</td>
-      <td class="chapter-number">${data.amount}</td>
+      <td class="chapter-number">$ ${data.amount}</td>
       <td class="totalBalance">
-        ${totalBalance}
+        $ ${totalBalance}
       </td>
       <td class="chapter-delete">
       <i class="material-icons" data-id="${id}">delete_outline</i>
       </td>
     </tr>
   `;
-  chapters.innerHTML = html+ chapters.innerHTML;
+  chapters.innerHTML = html + chapters.innerHTML;
 };

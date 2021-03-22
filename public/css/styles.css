@@ -61,6 +61,7 @@
   /* add button on the bottom */
   .add-btn{
     background: var(--title) !important;
+    margin-top: 10px;
   }
   /* input field */
   input{
