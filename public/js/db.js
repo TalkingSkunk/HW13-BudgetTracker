@@ -61,15 +61,19 @@ const callback = function(mutationsList, observer) {
       const book = bookTitle2.innerText;
 
       // 24/7 real-time listener sends back changes to database immediate. onSnapshot method sends back any change to the collection through a callback function, which takes the snapshot object. (**Snapshot listens not only to changes to database, but also changes to indexedDB. So DOM will reflect the changes even when offline.**)
-      db.collection('books').doc(book).collection('fragments').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+      db.collection('books').doc(book).collection('fragments').orderBy('timestamp', 'asc').onSnapshot(snapshot => {
         console.log('snapshot', snapshot);
 
         // pinpoint the HTML element with class "chapters" (only in index.html), then refresh the DOM every time a bookList is clicked.
         const chapters2 = document.querySelector('#chapters');
         chapters2.innerHTML = '';
+        let totalBalance=0;
 
         snapshot.docs.forEach(change=>{
-          renderChapter(change.data(), change.id)
+          console.log('change.data()', change.data());
+          const value = Number(change.data().amount)
+          totalBalance += change.data().type === 'Withdraw' ? -value : value;
+          renderChapter(change.data(), change.id, totalBalance)
         })
       });
     }
